@@ -1,8 +1,17 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
+import LoginPage from './pages/LoginPage';
+import DashboardPage from './pages/DashboardPage';
+import NotFoundPage from './pages/NotFoundPage';
+
 function App() {
+  {/* Definimos las rutas de la aplicación utilizando React Router. Cada ruta está asociada a un componente que se renderiza cuando el usuario navega a esa ruta. Routes revisa la URL actual y muestra solo la Route correspondiente */ }
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100">
-      <h1 className="text-3xl font-bold text-blue-600">Inventario Práctica</h1>
-    </div>
+    <Routes>
+      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 
