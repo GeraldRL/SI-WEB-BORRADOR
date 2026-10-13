@@ -1,4 +1,5 @@
-import { formatearPrecio } from "../utils/formatearPrecio";
+import ProductosTableHeader from "../components/ProductosTableHeader";
+import ProductoRow from "../components/ProductoRow";
 
 const productos = [
     { id: 1, nombre: 'Teclado mecánico', categoria: 'Periféricos', precio: 189.9, stock: 25 }, 
@@ -16,36 +17,13 @@ function ProductosPage() {
 
             <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-x-auto">
                 <table className="w-full text-sm text-left">
-                    <thead className="bg-slate-50 text-slate-600 border-b border-slate-200">
-                        <tr>
-                            <th className="px-4 py-3 font-medium">Nombre</th>
-                            <th className="px-4 py-3 font-medium">Categoría</th>
-                            <th className="px-4 py-3 font-medium text-right">Precio</th>
-                            <th className="px-4 py-3 font-medium text-right">Stock</th>
-                        </tr>
-                    </thead>
+                    <ProductosTableHeader />
                     <tbody>
                         {productos.map((producto) => (
-                            <tr key={producto.id} className="border-b border-slate-100 last:border-0 hover:bg-slate-59">
-                                <td className="px-4 py-3 text-slate-800">{producto.nombre}</td>
-                                <td className="px-4 py-3 text-slate-600">{producto.categoria}</td>
-                                <td className="px-4 py-3 text-right text-slate-800">{formatearPrecio(producto.precio)}</td>
-                                <td className="px-4 py-3 text-right">
-                                    <span className={
-                                        producto.stock < 10
-                                            ? 'px-2 py-0.5 rounded-full bg-red-100 text-red-700 font-medium'
-                                            : 'text-slate-800'
-
-                                    }
-                                >
-                                    {producto.stock}
-                                    </span>
-                                </td>
-                            </tr>
+                            <ProductoRow key={producto.id} producto={producto} />
                         ))}
                     </tbody>
                 </table>
-
             </div>
         </div>
     );
