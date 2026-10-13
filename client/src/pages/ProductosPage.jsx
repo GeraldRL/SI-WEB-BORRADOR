@@ -20,6 +20,11 @@ function ProductosPage() {
         setProductos([...productos, producto]);
     };
     
+    const eliminarProducto = (id) => {
+        if (!window.confirm('¿Eliminar este producto?')) return;
+        setProductos(productos.filter((p) => p.id !== id));
+    };
+
     return (
         <div>
             <h1 className="text-2xl font-bold text-slate-800 mb-6">Productos</h1>
@@ -31,7 +36,11 @@ function ProductosPage() {
                     <ProductosTableHeader />
                     <tbody>
                         {productos.map((producto) => (
-                            <ProductoRow key={producto.id} producto={producto} />
+                            <ProductoRow 
+                                key={producto.id}
+                                producto={producto}
+                                onEliminar={eliminarProducto}
+                            />
                         ))}
                     </tbody>
                 </table>

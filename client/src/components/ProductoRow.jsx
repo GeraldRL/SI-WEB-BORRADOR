@@ -1,7 +1,7 @@
 import { formatearPrecio } from '../utils/formatearPrecio';
 
-function ProductoRow({ producto }) {
-    const { nombre, categoria, precio, stock } = producto;;
+function ProductoRow({ producto, onEliminar }) {
+    const { id, nombre, categoria, precio, stock } = producto;;
     
     return (
         <tr className="border-b border-slate-100 last:border-0 hover:bg-slate-50">
@@ -18,6 +18,14 @@ function ProductoRow({ producto }) {
                 >
                     {stock}
                 </span>
+            </td>
+            <td className='px-4 py-3 text-right'>
+                <button
+                    onClick={() => onEliminar(id)}
+                    className="text-red-600 hover:text-red-800 text-sm font-medium"
+                >
+                    Eliminar
+                </button>
             </td>
         </tr>
     );
