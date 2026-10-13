@@ -48,9 +48,9 @@ inventario-practica/
 
 ## Fases de desarrollo
 
-- [ ] Fase 0: Repositorio y estructura
+- [X] Fase 0: Repositorio y estructura
 - [ ] Fase 1: Práctica de JavaScript moderno
-- [ ] Fase 2: Frontend con datos simulados
+- [X] Fase 2: Frontend con datos simulados
 - [ ] Fase 3: Backend y API REST
 - [ ] Fase 4: Integración frontend y backend
 - [ ] Fase 5: Autenticación y roles
