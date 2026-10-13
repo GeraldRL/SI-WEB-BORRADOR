@@ -1,7 +1,9 @@
+import { useState } from "react";
 import ProductosTableHeader from "../components/ProductosTableHeader";
 import ProductoRow from "../components/ProductoRow";
+import ProductoForm from "../components/ProductoForm";
 
-const productos = [
+const productosIniciales = [
     { id: 1, nombre: 'Teclado mecánico', categoria: 'Periféricos', precio: 189.9, stock: 25 }, 
     { id: 2, nombre: 'Mouse inalámbrico', categoria: 'Periféricos', precio: 69.5, stock: 8 }, 
     { id: 3, nombre: 'Monitor 24', categoria: 'Pantallas', precio: 549, stock: 14 }, 
@@ -11,10 +13,19 @@ const productos = [
 ]
 
 function ProductosPage() {
+    const [productos, setProductos] = useState(productosIniciales);
+
+    const agregarProducto = (nuevo) => {
+        const producto ={ ...nuevo, id: Date.now() };
+        setProductos([...productos, producto]);
+    };
+    
     return (
         <div>
             <h1 className="text-2xl font-bold text-slate-800 mb-6">Productos</h1>
 
+            <ProductoForm onAgregar={agregarProducto} />
+            
             <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-x-auto">
                 <table className="w-full text-sm text-left">
                     <ProductosTableHeader />
