@@ -7,8 +7,8 @@ const links = [
 
 function Sidebar() {
     return (
-        <aside className="w-56 bg-slate-800 text-slate-200 p-4">
-            <nav className="flex flex-col gap-1">
+        <aside className="w-full md:w-56 bg-slate-800 text-slate-200 p-2 md:p-4">
+            <nav className="flex flex-row md:flex-col gap-1">
                 {links.map((link) => (
                     <NavLink
                         key={link.to}

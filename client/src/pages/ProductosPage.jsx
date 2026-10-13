@@ -46,7 +46,7 @@ function ProductosPage() {
             />
             
             <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-x-auto">
-                <table className="w-full text-sm text-left">
+                <table className="w-full min-w-[640px] text-sm text-left">
                     <ProductosTableHeader />
                     <tbody>
                         {productos.map((producto) => (
