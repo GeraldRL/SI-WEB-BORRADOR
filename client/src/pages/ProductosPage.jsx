@@ -14,22 +14,36 @@ const productosIniciales = [
 
 function ProductosPage() {
     const [productos, setProductos] = useState(productosIniciales);
+    const [productoEditando, setProductoEditando] = useState(null);
 
-    const agregarProducto = (nuevo) => {
-        const producto ={ ...nuevo, id: Date.now() };
-        setProductos([...productos, producto]);
+    const guardarProducto = (datos) => {
+        if (productoEditando) {
+            setProductos(
+                productos.map((p) =>
+                    p.id === productoEditando.id ? { ...p, ...datos } : p
+                )
+            );
+            setProductoEditando(null);
+        } else {
+            setProductos([...productos, { ...datos, id: Date.now() }]);
+        }
     };
     
     const eliminarProducto = (id) => {
         if (!window.confirm('¿Eliminar este producto?')) return;
         setProductos(productos.filter((p) => p.id !== id));
+        if (productoEditando?.id === id) setProductoEditando(null);
     };
 
     return (
         <div>
             <h1 className="text-2xl font-bold text-slate-800 mb-6">Productos</h1>
 
-            <ProductoForm onAgregar={agregarProducto} />
+            <ProductoForm 
+                onGuardar={guardarProducto}
+                productoEditando={productoEditando}
+                onCancelar={() => setProductoEditando(null)}
+            />
             
             <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-x-auto">
                 <table className="w-full text-sm text-left">
@@ -39,6 +53,7 @@ function ProductosPage() {
                             <ProductoRow 
                                 key={producto.id}
                                 producto={producto}
+                                onEditar={setProductoEditando}
                                 onEliminar={eliminarProducto}
                             />
                         ))}

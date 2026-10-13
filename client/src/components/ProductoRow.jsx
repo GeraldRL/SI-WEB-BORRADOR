@@ -1,6 +1,6 @@
 import { formatearPrecio } from '../utils/formatearPrecio';
 
-function ProductoRow({ producto, onEliminar }) {
+function ProductoRow({ producto, onEditar, onEliminar }) {
     const { id, nombre, categoria, precio, stock } = producto;;
     
     return (
@@ -20,12 +20,20 @@ function ProductoRow({ producto, onEliminar }) {
                 </span>
             </td>
             <td className='px-4 py-3 text-right'>
-                <button
-                    onClick={() => onEliminar(id)}
-                    className="text-red-600 hover:text-red-800 text-sm font-medium"
-                >
-                    Eliminar
-                </button>
+                <div className='flex justify-end gap-3'>
+                    <button
+                        onClick={() => onEditar(producto)}
+                        className='text-blue-600 hover:text-blue-800 text-sm font-medium'
+                    >
+                        Editar
+                    </button>
+                    <button
+                        onClick={() => onEliminar(id)}
+                        className='text-red-600 hover:text-red-800 text-sm font-medium'
+                    >
+                        Eliminar
+                    </button>
+                </div>
             </td>
         </tr>
     );
